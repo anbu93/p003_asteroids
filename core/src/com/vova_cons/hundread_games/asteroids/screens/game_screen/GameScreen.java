@@ -3,9 +3,12 @@ package com.vova_cons.hundread_games.asteroids.screens.game_screen;
 import com.vova_cons.hundread_games.asteroids.screens.BaseScreen;
 import com.vova_cons.hundread_games.asteroids.screens.ScreenType;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.logic.GameSystem;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.view.InputSystem;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.view.RendererSystem;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.BodyComponent;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.GameWorld;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.MoveSystem;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.PlayerComponent;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.RotationComponent;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.SpriteComponent;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.VelocityComponent;
@@ -31,6 +34,7 @@ public class GameScreen extends BaseScreen {
     public void start() {
         world = new GameWorld();
         world.addEntity()
+                .addComponent(PlayerComponent.class, new PlayerComponent())
                 .addComponent(BodyComponent.class, new BodyComponent(500,500, 75, 75))
                 .addComponent(RotationComponent.class, new RotationComponent(45f))
                 .addComponent(VelocityComponent.class, new VelocityComponent())
@@ -39,8 +43,8 @@ public class GameScreen extends BaseScreen {
                 .addComponent(BodyComponent.class, new BodyComponent(100,100, 100, 100))
                 .addComponent(VelocityComponent.class, new VelocityComponent())
                 .addComponent(SpriteComponent.class, new SpriteComponent(RendererSystem.ASTEROID));
-        //input system
-        //move system
+        systems.add(new InputSystem());
+        systems.add(new MoveSystem());
         //collision system
         //level system
         //render system

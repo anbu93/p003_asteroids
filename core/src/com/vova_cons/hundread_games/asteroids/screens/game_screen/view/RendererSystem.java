@@ -2,8 +2,8 @@ package com.vova_cons.hundread_games.asteroids.screens.game_screen.view;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.GameBalance;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.logic.GameSystem;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.BodyComponent;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.GameEntity;
@@ -27,10 +27,10 @@ public class RendererSystem extends Group implements GameSystem {
 
     public RendererSystem(GameWorld world) {
         this.world = world;
-        this.setSize(1000f, 1000f);
+        this.setSize(GameBalance.GAME_WIDTH, GameBalance.GAME_HEIGHT);
         AssetsService assetsService = ServiceLocator.getService(AssetsService.class);
         bg = new Sprite(assetsService.getTexture("textures/bg.jpg"));
-        bg.setSize(1000f, 1000f);
+        bg.setSize(this.getWidth(), this.getHeight());
         sprites[UNKNOWN] = new Sprite(assetsService.getTexture("badlogic.jpg"));
         sprites[ASTEROID] = new Sprite(assetsService.getTexture("textures/asteroid.png"));
         sprites[BULLET] = new Sprite(assetsService.getTexture("textures/bullet.png"));
@@ -53,7 +53,7 @@ public class RendererSystem extends Group implements GameSystem {
                 sprite.setPosition(body.x - body.w/2f, body.y - body.h/2f);
                 sprite.setSize(body.w, body.h);
                 if (entity.isComponentExists(RotationComponent.class)) {
-                    float rotation = entity.getComponent(RotationComponent.class).rotation;
+                    float rotation = entity.getComponent(RotationComponent.class).angle;
                     sprite.setOriginCenter();
                     sprite.setRotation(rotation);
                 }
