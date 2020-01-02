@@ -5,12 +5,6 @@ import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.GameWorl
 /**
  * Created by vova_cons on 01.01.2020.
  */
-public abstract class GameSystem {
-    protected GameWorld world;
-
-    public GameSystem(GameWorld world) {
-        this.world = world;
-    }
-
-    public abstract void update(float delta);
+public interface GameSystem {
+    void update(float delta, GameWorld world);
 }

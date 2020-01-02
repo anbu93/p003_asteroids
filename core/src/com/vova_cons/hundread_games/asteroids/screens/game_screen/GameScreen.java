@@ -1,14 +1,14 @@
 package com.vova_cons.hundread_games.asteroids.screens.game_screen;
 
-import com.badlogic.gdx.utils.Align;
 import com.vova_cons.hundread_games.asteroids.screens.BaseScreen;
 import com.vova_cons.hundread_games.asteroids.screens.ScreenType;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.logic.GameSystem;
-import com.vova_cons.hundread_games.asteroids.screens.game_screen.logic.InputSystem;
-import com.vova_cons.hundread_games.asteroids.screens.game_screen.logic.MoveSystem;
-import com.vova_cons.hundread_games.asteroids.screens.game_screen.view.GameRenderer;
-import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.GameObject;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.view.RendererSystem;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.BodyComponent;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.GameWorld;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.RotationComponent;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.SpriteComponent;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.VelocityComponent;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
 public class GameScreen extends BaseScreen {
     private GameWorld world;
     private List<GameSystem> systems = new LinkedList<GameSystem>();
-    private GameRenderer renderer;
+    private RendererSystem renderer;
 
     //region interface
     @Override
@@ -30,26 +30,34 @@ public class GameScreen extends BaseScreen {
     @Override
     public void start() {
         world = new GameWorld();
-        world.player.body.w = 75;
-        world.player.body.h = 75;
-        world.player.body.x = 500;
-        world.player.body.y = 500;
-        world.asteroids.add(new GameObject(100, 100, 100, 100));
-        world.asteroids.add(new GameObject(750, 750, 75, 75));
-        systems.add(new InputSystem(world));
-        systems.add(new MoveSystem(world));
+        world.addEntity()
+                .addComponent(BodyComponent.class, new BodyComponent(500,500, 75, 75))
+                .addComponent(RotationComponent.class, new RotationComponent(45f))
+                .addComponent(VelocityComponent.class, new VelocityComponent())
+                .addComponent(SpriteComponent.class, new SpriteComponent(RendererSystem.PLAYER));
+        world.addEntity()
+                .addComponent(BodyComponent.class, new BodyComponent(100,100, 100, 100))
+                .addComponent(VelocityComponent.class, new VelocityComponent())
+                .addComponent(SpriteComponent.class, new SpriteComponent(RendererSystem.ASTEROID));
+        //input system
+        //move system
         //collision system
         //level system
-        renderer = new GameRenderer(world);
-        renderer.setScale(BaseScreen.HEIGHT / 1000f);
-        renderer.setPosition(BaseScreen.WIDTH/2f - renderer.getWidth() * renderer.getScaleX() * 0.5f, 0);
+        //render system
+        renderer = new RendererSystem(world);
+        systems.add(renderer);
+        float scale = BaseScreen.HEIGHT / renderer.getHeight();
+        renderer.setScale(scale);
+        renderer.setPosition(
+                BaseScreen.WIDTH/2f - renderer.getWidth()/2f * scale,
+                BaseScreen.HEIGHT/2f - renderer.getHeight()/2f * scale);
         this.addActor(renderer);
     }
 
     @Override
     public void update(float delta) {
         for(GameSystem gameSystem : systems) {
-            gameSystem.update(delta);
+            gameSystem.update(delta, world);
         }
     }
 
