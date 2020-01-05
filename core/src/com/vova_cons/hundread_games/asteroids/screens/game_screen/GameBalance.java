@@ -1,5 +1,9 @@
 package com.vova_cons.hundread_games.asteroids.screens.game_screen;
 
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.GameEntity;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.components.BulletComponent;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.components.PlayerComponent;
+
 /**
  * Created by vova_cons on 02.01.2020.
  */
@@ -15,4 +19,17 @@ public class GameBalance {
     public static final float BULLET_WIDTH = 25f;
     public static final float BULLET_HEIGHT = 50f;
     public static final float BULLET_SPEED = 750f; //meters per seconds
+    public static final int TYPE_PLAYER = 0;
+    public static final int TYPE_ASTEROID = 1;
+    public static final int TYPE_BULLET = 2;
+
+    public static int detectEntityType(GameEntity entity) {
+        if (entity.isComponentExists(PlayerComponent.class)) {
+            return TYPE_PLAYER;
+        }
+        if (entity.isComponentExists(BulletComponent.class)) {
+            return TYPE_BULLET;
+        }
+        return TYPE_ASTEROID;
+    }
 }

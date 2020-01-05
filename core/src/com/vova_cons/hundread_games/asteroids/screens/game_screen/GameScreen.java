@@ -44,7 +44,7 @@ public class GameScreen extends BaseScreen {
                 .addComponent(SpriteComponent.class, new SpriteComponent(RendererSystem.PLAYER));
         world.addEntity()
                 .addComponent(BodyComponent.class, new BodyComponent(100,100, 100, 100))
-                .addComponent(VelocityComponent.class, new VelocityComponent())
+                .addComponent(VelocityComponent.class, new VelocityComponent(100, 155))
                 .addComponent(SpriteComponent.class, new SpriteComponent(RendererSystem.ASTEROID));
         systems.add(new InputSystem());
         systems.add(new ShotSystem());
