@@ -8,6 +8,7 @@ public class GameBalance {
     public static final float GAME_HEIGHT = 1000f;
     public static final float PLAYER_WIDTH = 75f;
     public static final float PLAYER_HEIGHT = 75f;
+    public static final float PLAYER_MAX_SPEED = 500f; //meters per seconds
     public static final float PLAYER_ROTATION_SPEED = 135f; //angle per seconds
     public static final float PLAYER_ACCELERATION = 300f; //meters per seconds^2
     public static final float PLAYER_DECELERATION = 150f; //meters per seconds^2

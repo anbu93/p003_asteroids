@@ -91,6 +91,12 @@ public class InputSystem implements GameSystem {
     private void applyPlayerVelocity(GameEntity player) {
         VelocityComponent velocity = player.getComponent(VelocityComponent.class);
         velocity.addForce(vector.x, vector.y);
+        vector.x = velocity.x;
+        vector.y = velocity.y;
+        if (vector.len() > PLAYER_MAX_SPEED) {
+            vector.setLength(PLAYER_MAX_SPEED);
+            velocity.apply(vector.x, vector.y);
+        }
     }
 
     private void doPlayerShot(GameEntity player) {
