@@ -1,4 +1,4 @@
-package com.vova_cons.hundread_games.asteroids.screens.game_screen.logic;
+package com.vova_cons.hundread_games.asteroids.screens.game_screen.systems;
 
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.GameWorld;
 

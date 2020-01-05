@@ -1,5 +1,7 @@
 package com.vova_cons.hundread_games.asteroids.screens.game_screen.world;
 
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.components.GameComponent;
+
 import java.util.HashMap;
 import java.util.Map;
 

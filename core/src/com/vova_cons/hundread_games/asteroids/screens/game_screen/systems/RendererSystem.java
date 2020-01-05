@@ -1,15 +1,14 @@
-package com.vova_cons.hundread_games.asteroids.screens.game_screen.view;
+package com.vova_cons.hundread_games.asteroids.screens.game_screen.systems;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.GameBalance;
-import com.vova_cons.hundread_games.asteroids.screens.game_screen.logic.GameSystem;
-import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.BodyComponent;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.components.BodyComponent;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.GameEntity;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.GameWorld;
-import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.RotationComponent;
-import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.SpriteComponent;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.components.RotationComponent;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.components.SpriteComponent;
 import com.vova_cons.hundread_games.asteroids.services.ServiceLocator;
 import com.vova_cons.hundread_games.asteroids.services.assets_service.AssetsService;
 

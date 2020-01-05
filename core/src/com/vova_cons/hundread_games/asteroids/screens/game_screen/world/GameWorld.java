@@ -1,5 +1,6 @@
 package com.vova_cons.hundread_games.asteroids.screens.game_screen.world;
 
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.components.GameComponent;
 import com.vova_cons.hundread_games.asteroids.utils.ListUtils;
 
 import java.util.LinkedList;
@@ -23,7 +24,7 @@ public class GameWorld {
     }
 
     public void removeEntity(GameEntity entity) {
-        entities.add(entity);
+        entities.remove(entity);
     }
 
     public List<GameEntity> getEntitiesFilterAt(final Class<? extends GameComponent> type) {
