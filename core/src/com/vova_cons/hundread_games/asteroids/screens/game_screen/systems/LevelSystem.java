@@ -73,26 +73,55 @@ public class LevelSystem implements GameSystem {
                 spawnAsteroids(1, 0.5f, world);
                 break;
             case 2:
-                spawnAsteroids(2, 0.75f, world);
+                spawnAsteroids(2, 0.5f, world);
                 break;
             case 3:
+                spawnAsteroids(3, 0.5f, world);
+                break;
             case 4:
-                spawnAsteroids(3, 1f, world);
+                spawnAsteroids(3, 0.55f, world);
                 break;
             case 5:
+                spawnAsteroids(4, 0.65f, world);
+                break;
             case 6:
+                spawnAsteroids(4, 0.70f, world);
+                break;
             case 7:
-                spawnAsteroids(4,1f, world);
+                spawnAsteroids(4,0.75f, world);
                 break;
             case 8:
+                spawnAsteroids(5, 0.75f, world);
+                break;
             case 9:
+                spawnAsteroids(5, 0.80f, world);
+                break;
             case 10:
+                spawnAsteroids(5, 0.85f, world);
+                break;
             case 11:
+                spawnAsteroids(5, 0.90f, world);
+                break;
             case 12:
-                spawnAsteroids(5, 1f, world);
+                spawnAsteroids(5, 95f, world);
+                break;
+            case 13:
+                spawnAsteroids(6, 85f, world);
+                break;
+            case 14:
+                spawnAsteroids(6, 90f, world);
+                break;
+            case 15:
+                spawnAsteroids(6, 95f, world);
+                break;
+            case 16:
+                spawnAsteroids(6, 95f, world);
+                break;
+            case 17:
+                spawnAsteroids(6, 1f, world);
                 break;
             default:
-                spawnAsteroids(6, 1f, world);
+                spawnAsteroids(world.getLevel() - 17 + 6, 1f, world);
                 break;
         }
     }
