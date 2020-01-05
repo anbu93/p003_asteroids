@@ -10,8 +10,18 @@ import java.util.List;
  * Created by vova_cons on 01.01.2020.
  */
 public class GameWorld {
+    private WorldState state = WorldState.GameProcess;
     private List<GameEntity> entities = new LinkedList<GameEntity>();
     private List<GameEntity> reserveList = new LinkedList<GameEntity>();
+    private int level = 0;
+
+    public WorldState getState() {
+        return state;
+    }
+
+    public void setState(WorldState state) {
+        this.state = state;
+    }
 
     public List<GameEntity> getEntities() {
         return entities;
@@ -35,5 +45,13 @@ public class GameWorld {
                 return value.isComponentExists(type);
             }
         }, reserveList);
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getLevel() {
+        return level;
     }
 }

@@ -20,6 +20,11 @@ public class CollisionSystem implements GameSystem {
     private List<GameEntity> entityList = new LinkedList<GameEntity>();
 
     @Override
+    public boolean isWorkingWithPause() {
+        return false;
+    }
+
+    @Override
     public void update(float delta, GameWorld world) {
         entityList.addAll(world.getEntitiesFilterAt(BodyComponent.class));
         for(GameEntity entity : entityList) {

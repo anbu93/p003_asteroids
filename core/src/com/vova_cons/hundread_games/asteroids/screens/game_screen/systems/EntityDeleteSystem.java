@@ -9,6 +9,11 @@ import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.componen
  */
 public class EntityDeleteSystem implements GameSystem {
     @Override
+    public boolean isWorkingWithPause() {
+        return false;
+    }
+
+    @Override
     public void update(float delta, GameWorld world) {
         for(GameEntity entity : world.getEntitiesFilterAt(DeleteEntityComponent.class)) {
             world.removeEntity(entity);

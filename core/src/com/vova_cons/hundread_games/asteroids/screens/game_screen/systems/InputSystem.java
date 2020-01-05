@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.GameEntity;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.GameWorld;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.WorldState;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.components.BodyComponent;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.components.BulletComponent;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.components.GameComponent;
@@ -26,10 +27,24 @@ public class InputSystem implements GameSystem {
     private Vector2 vector = new Vector2();
 
     @Override
+    public boolean isWorkingWithPause() {
+        return true;
+    }
+
+    @Override
     public void update(float delta, GameWorld world) {
-        updateInputs();
-        for(GameEntity player : world.getEntitiesFilterAt(PlayerComponent.class)) {
-            applyInputs(delta, player);
+        if (world.getState() == WorldState.Pause) {
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+                world.setState(WorldState.GameProcess);
+            }
+        } else if (world.getState() == WorldState.GameProcess) {
+            updateInputs();
+            for (GameEntity player : world.getEntitiesFilterAt(PlayerComponent.class)) {
+                applyInputs(delta, player);
+            }
+            if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+                world.setState(WorldState.Pause);
+            }
         }
     }
 

@@ -20,6 +20,11 @@ public class ShotSystem implements GameSystem {
     private Vector2 vector = new Vector2();
 
     @Override
+    public boolean isWorkingWithPause() {
+        return false;
+    }
+
+    @Override
     public void update(float delta, GameWorld world) {
         for(GameEntity playerEntity : world.getEntitiesFilterAt(PlayerComponent.class)) {
             if (playerEntity.isComponentExists(ShotComponent.class)) {

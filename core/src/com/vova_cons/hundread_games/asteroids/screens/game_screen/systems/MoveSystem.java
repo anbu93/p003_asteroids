@@ -13,6 +13,11 @@ import static com.vova_cons.hundread_games.asteroids.screens.game_screen.GameBal
  */
 public class MoveSystem implements GameSystem {
     @Override
+    public boolean isWorkingWithPause() {
+        return false;
+    }
+
+    @Override
     public void update(float delta, GameWorld world) {
         for(GameEntity entity : world.getEntitiesFilterAt(VelocityComponent.class)) {
             moveEntity(entity, delta);

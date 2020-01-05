@@ -36,6 +36,11 @@ public class RendererSystem extends Group implements GameSystem {
         sprites[PLAYER] = new Sprite(assetsService.getTexture("textures/spaceship.png"));
     }
 
+    @Override
+    public boolean isWorkingWithPause() {
+        return true;
+    }
+
     //region logic
     @Override
     public void update(float delta, GameWorld world) {} //do nothing
