@@ -6,6 +6,7 @@ import com.vova_cons.hundread_games.asteroids.screens.game_screen.systems.Entity
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.systems.GameSystem;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.systems.InputSystem;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.systems.RendererSystem;
+import com.vova_cons.hundread_games.asteroids.screens.game_screen.systems.ShotSystem;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.components.BodyComponent;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.systems.CollisionSystem;
 import com.vova_cons.hundread_games.asteroids.screens.game_screen.world.GameWorld;
@@ -37,7 +38,7 @@ public class GameScreen extends BaseScreen {
         world = new GameWorld();
         world.addEntity()
                 .addComponent(PlayerComponent.class, new PlayerComponent())
-                .addComponent(BodyComponent.class, new BodyComponent(500,500, 75, 75))
+                .addComponent(BodyComponent.class, new BodyComponent(500,500, GameBalance.PLAYER_WIDTH, GameBalance.PLAYER_HEIGHT))
                 .addComponent(RotationComponent.class, new RotationComponent(45f))
                 .addComponent(VelocityComponent.class, new VelocityComponent())
                 .addComponent(SpriteComponent.class, new SpriteComponent(RendererSystem.PLAYER));
@@ -46,6 +47,7 @@ public class GameScreen extends BaseScreen {
                 .addComponent(VelocityComponent.class, new VelocityComponent())
                 .addComponent(SpriteComponent.class, new SpriteComponent(RendererSystem.ASTEROID));
         systems.add(new InputSystem());
+        systems.add(new ShotSystem());
         systems.add(new MoveSystem());
         systems.add(new CollisionSystem());
         systems.add(new EntityDeleteSystem());
