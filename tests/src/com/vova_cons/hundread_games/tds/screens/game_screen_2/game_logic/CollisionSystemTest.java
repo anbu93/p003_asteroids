@@ -5,6 +5,7 @@ import com.vova_cons.hundread_games.tds.screens.game_screen_2.game_logic.systems
 import com.vova_cons.hundread_games.tds.screens.game_screen_2.game_world.GameEntity;
 import com.vova_cons.hundread_games.tds.screens.game_screen_2.game_world.GameEntityType;
 import com.vova_cons.hundread_games.tds.screens.game_screen_2.game_world.components.Body;
+import com.vova_cons.hundread_games.tds.screens.game_screen_2.game_world.components.CollisionComponent;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,8 +26,10 @@ public class CollisionSystemTest extends PlayerGameTest {
         super.setUp();
         body.w = PLAYER_SIZE;
         body.h = PLAYER_SIZE;
+        player.add(CollisionComponent.class, new CollisionComponent());
         wall = new GameEntity(GameEntityType.Wall);
         wall.add(Body.class, new Body(0, 0, WALL_SIZE, WALL_SIZE));
+        wall.add(CollisionComponent.class, new CollisionComponent());
         wallBody = wall.get(Body.class);
         world.addEntity(wall);
         system = new CollisionSystem();

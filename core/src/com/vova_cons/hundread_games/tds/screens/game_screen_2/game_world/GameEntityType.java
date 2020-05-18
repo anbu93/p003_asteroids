@@ -7,4 +7,5 @@ public enum GameEntityType {
     Player,
     Zombie,
     Wall,
+    Tree,
 }

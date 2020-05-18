@@ -4,6 +4,7 @@ import com.vova_cons.hundread_games.tds.screens.game_screen_2.game_logic.GameSys
 import com.vova_cons.hundread_games.tds.screens.game_screen_2.game_world.GameEntity;
 import com.vova_cons.hundread_games.tds.screens.game_screen_2.game_world.GameEntityType;
 import com.vova_cons.hundread_games.tds.screens.game_screen_2.game_world.components.Body;
+import com.vova_cons.hundread_games.tds.screens.game_screen_2.game_world.components.CollisionComponent;
 import com.vova_cons.hundread_games.tds.screens.game_screen_2.game_world.components.Movement;
 
 /**
@@ -16,17 +17,14 @@ public class CollisionSystem extends GameSystem {
 
     @Override
     public void update(float delta) {
-        for(GameEntity entity : world.getEntitiesByType(GameEntityType.Player)) {
-            checkCollision(entity, delta);
-        }
-        for(GameEntity entity : world.getEntitiesByType(GameEntityType.Zombie)) {
-            checkCollision(entity, delta);
-        }
-    }
-
-    private void checkCollision(GameEntity entity, float delta) {
-        for(GameEntity wall : world.getEntitiesByType(GameEntityType.Wall)) {
-            checkCollision(entity, wall, delta);
+        for(GameEntity entity : world.entities) {
+            if (entity.isExists(Movement.class) && entity.isExists(CollisionComponent.class)) {
+                for(GameEntity other : world.entities) {
+                    if (entity != other && other.isExists(CollisionComponent.class)) {
+                        checkCollision(entity, other, delta);
+                    }
+                }
+            }
         }
     }
 

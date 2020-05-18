@@ -3,6 +3,7 @@ package com.vova_cons.hundread_games.tds.screens.game_screen_2.game_renderer;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.vova_cons.hundread_games.tds.screens.game_screen_2.game_world.GameEntityType;
 import com.vova_cons.hundread_games.tds.screens.game_screen_2.game_world.components.Body;
 import com.vova_cons.hundread_games.tds.screens.game_screen_2.game_world.components.SpriteComponent;
 import com.vova_cons.hundread_games.tds.screens.game_screen_2.game_world.GameEntity;
@@ -32,7 +33,16 @@ public class EntitiesRenderer extends Group {
     @Override
     protected void drawChildren(Batch batch, float parentAlpha) {
         super.drawChildren(batch, parentAlpha);
-        for(GameEntity entity : world.entities) {
+        for(GameEntity entity : world.getEntitiesByType(GameEntityType.Wall)) {
+            drawEntity(entity, batch);
+        }
+        for(GameEntity entity : world.getEntitiesByType(GameEntityType.Zombie)) {
+            drawEntity(entity, batch);
+        }
+        for(GameEntity entity : world.getEntitiesByType(GameEntityType.Player)) {
+            drawEntity(entity, batch);
+        }
+        for(GameEntity entity : world.getEntitiesByType(GameEntityType.Tree)) {
             drawEntity(entity, batch);
         }
     }
@@ -47,6 +57,7 @@ public class EntitiesRenderer extends Group {
             sprite.setOrigin(sprite.getWidth()/2f, sprite.getHeight()/2f);
             sprite.setRotation(body.rotation);
             sprite.setScale(spriteComponent.scale);
+            sprite.setAlpha(spriteComponent.alpha);
             sprite.draw(batch);
         }
     }
